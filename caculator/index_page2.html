@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index_page2.css">
+    <title>Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="logo">
+            <img src="/caculator/images/logo.svg" alt="">
+        </div>
+        <div id="nav_title" v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}">
+            <h2>{{ title }}</h2>
+            <ul class="list_items">
+                <li v-bind:style="{listStyle: listStyle}"><a v-bind:href="url1"
+                        v-bind:style="{textDecoration: noneDecoration}">
+                        {{ pageName1 }}</a></li>
+                <li v-bind:style="{listStyle: listStyle}"><a v-bind:href="url2"
+                        v-bind:style="{textDecoration: noneDecoration}">
+                        {{ pageName2 }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div id="content1">
+            <!-- HÌNH CHỮ NHẬT -->
+            <div id="app1" class="content_left" v-bind:style="{textAlign: textAlign}">
+                <h2 v-bind:style="{color: textColor}">{{ title }}</h2>
+                <h3>{{ content1_1 }}</h3>
+                <h3>{{ content1_2 }}</h3>
+                <input type="number" class="btn_input" placeholder="Nhập chiều dài" v-model="heigh">m<br>
+                <input type="number" class="btn_input" placeholder="Nhập chiều rộng" v-model="witdh">m<br>
+                <button class="btn_result" v-on:click="rectangle">KẾT QUẢ</button>
+                <button class="btn_clear" v-on:click="clearAll">XÓA</button>
+                <p id="acreage">
+                    {{'Diện tích = ' + result2}} m&#178;
+                </p>
+                <p id="perimeter">
+                    {{'Chu vi = ' + result1 + ' m'}}
+                </p>
+            </div>
+            <!-- HÌNH VUÔNG -->
+            <div id="app2" class="content_right" v-bind:style="{textAlign: textAlign}">
+                <h2 v-bind:style="{color: textColor}">{{ title }}</h2>
+                <h3>{{ content1_1 }}</h3>
+                <h3>{{ content1_2 }} &#178</h3>
+                <input type="number" class="btn_input" placeholder="Nhập cạnh" v-model="edge">m<br>
+                <button class="btn_result" v-on:click="square">KẾT QUẢ</button>
+                <button class="btn_clear" v-on:click="clearAll">XÓA</button>
+                <p id="acreage">
+                    {{'Diện tích = ' + result2}} m&#178;
+                </p>
+                <p id="perimeter">
+                    {{'Chu vi = ' + result1 + ' m'}}
+                </p>
+            </div>
+        </div>
+        <div id="convert">
+            <div class="container_unit">
+                <div class="unit1">
+                    Đơn vị cm <br>
+                    <div class="container_img_input">
+                        <input type="number" placeholder="Nhập đơn vị" v-model="unit1">
+                        <img src="/caculator/images/iconmonstr-x-mark-square-multiple-filled-24.png" v-on:click="deleteUnit1">
+                    </div>
+                </div>
+                <div class="unit2">
+                    Đơn vị m <br>
+                    <div class="container_img_input">
+                        <input type="number" placeholder="Nhập đơn vị" v-model="unit2">
+                        <img src="/caculator/images/iconmonstr-x-mark-square-multiple-filled-24.png" v-on:click="deleteUnit2">
+                    </div>
+                </div>
+            </div>
+            <button v-on:click="convertUnit">CONVERT</button> <br>
+            <p id="message" v-bind:style="{color: colorMessage}">
+                {{ message }}
+            </p>
+        </div>
+
+        <div id="content2">
+            <!-- HÌNH TRÒN -->
+            <div id="app3" class="content2_left" v-bind:style="{textAlign: textAlign}">
+                <h2 v-bind:style="{color: textColor}">{{ title }}</h2>
+                <h3>{{ content1_1 }}</h3>
+                <h3>{{ content1_2 }}</h3>
+                <input type="number" class="btn_input" placeholder="Nhập bán kính" v-model="radius">m<br>
+                <button class="btn_result" v-on:click="circle">KẾT QUẢ</button>
+                <button class="btn_clear" v-on:click="clearAll">XÓA</button>
+                <p id="acreage">
+                    {{'Diện tích = ' + result2}} m&#178;
+                </p>
+                <p id="perimeter">
+                    {{'Chu vi = ' + result1 + ' m'}}
+                </p>
+            </div>
+            <!-- HÌNH TAM GIÁC -->
+            <div id="app4" class="content2_left" v-bind:style="{textAlign: textAlign}">
+                <h2 v-bind:style="{color: textColor}">{{ title }}</h2>
+                <h3>{{ content1_1 }}</h3>
+                <h3>{{ content1_2 }}</h3>
+                <input type="number" class="btn_input" placeholder="Nhập cạnh" v-model="edge1">m<br>
+                <input type="number" class="btn_input" placeholder="Nhập cạnh" v-model="edge2">m<br>
+                <input type="number" class="btn_input" placeholder="Nhập cạnh" v-model="edge3">m<br>
+                <input type="number" class="btn_input" placeholder="Nhập cạnh đáy" v-model="edge4">m<br>
+                <input type="number" class="btn_input" placeholder="Nhập chiều cao" v-model="heigh">m<br>
+                <button class="btn_result" v-on:click="triangle">KẾT QUẢ</button>
+                <button class="btn_clear" v-on:click="clearAll">XÓA</button> 
+                <p id="acreage">
+                    {{'Diện tích = ' + result2}} m&#178;
+                </p>
+                <p id="perimeter">
+                    {{'Chu vi = ' + result1 + ' m'}}
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<script src="./js/index_page2.js"></script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="logo">
+            <!-- <img src="./images/iconmonstr-dashboard-filled-24.png" alt=""> -->
+        </div>
+        <div id="nav_title" v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}">
+            <h2>{{ title }}</h2>
+            <ul class="list_items">
+                <li v-bind:style="{listStyle: listStyle}"><a v-bind:href="url1"  
+                    v-bind:style="{textDecoration: noneDecoration}">
+                    {{ pageName1 }}</a></li>
+                <li v-bind:style="{listStyle: listStyle}"><a v-bind:href="url2"  
+                    v-bind:style="{textDecoration: noneDecoration}">
+                    {{ pageName2 }}</a></li>
+            </ul>
+        </div>
+    </div>
+        
+    <div id="container">
+        <div class="wrapper">
+            <section class="screen">
+                    <div id="screen_medthos">
+                        {{ result }}
+                    </div>
+            </section>
+            <section class="calc-buttons">
+                <div class="calc-button-row">
+                    <button class="calc-button double" v-on:click="deleteAll()">C</button>
+                    <button class="calc-button" v-on:click="deleteItems">&larr;</button>
+                    <button class="calc-button" v-on:click="show('/')">{{ divide}}</button>
+                </div>
+                <div class="calc-button-row">
+                    <button class="calc-button" v-on:click="show('7')">7</button>
+                    <button class="calc-button" v-on:click="show('8')">8</button>
+                    <button class="calc-button" v-on:click="show('9')">9</button>
+                    <button class="calc-button" v-on:click="show('*')">{{ times }}</button>
+                </div>
+                <div class="calc-button-row">
+                    <button class="calc-button" v-on:click="show('4')">4</button>
+                    <button class="calc-button" v-on:click="show('5')">5</button>
+                    <button class="calc-button" v-on:click="show('6')">6</button>
+                    <button class="calc-button" v-on:click="show('-')">&minus;</button>
+                </div>
+                <div class="calc-button-row">
+                    <button class="calc-button" v-on:click="show('1')">1</button>
+                    <button class="calc-button" v-on:click="show('2')">2</button>
+                    <button class="calc-button" v-on:click="show('3')">3</button>
+                    <button class="calc-button" v-on:click="show('+')">{{ plus }}</button>
+                </div>
+                <div class="calc-button-row">
+                    <button class="calc-button triple" v-on:click="show('0')">0</button>
+                    <button class="calc-button" v-on:click="equal" v-on:keyup.enter="equal">&equals;</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+</body>
+<script src="./js/script.js"></script>
+</html>
